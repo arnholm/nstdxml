@@ -68,6 +68,11 @@
 #include <string.h>
 #include <stdlib.h>
 
+#ifdef _MSC_VER
+#define strncasecmp _strnicmp
+#define strcasecmp _stricmp
+#endif
+
 XMLCSTR XMLNode::getVersion() { return _CXML("v2.44"); }
 void freeXMLString(XMLSTR t){if(t)free(t);}
 
@@ -334,7 +339,7 @@ char myIsTextWideChar(const void *b, int len) { return FALSE; }
         }
     #else
         static inline FILE *xfopen(XMLCSTR filename,XMLCSTR mode) { return fopen(filename,mode); }
-        static inline int xstrlen(XMLCSTR c)   { return strlen(c); }
+        static inline int xstrlen(XMLCSTR c)   { return static_cast<int>(strlen(c)); }
         static inline int xstrnicmp(XMLCSTR c1, XMLCSTR c2, int l) { return strncasecmp(c1,c2,l);}
         static inline int xstrncmp(XMLCSTR c1, XMLCSTR c2, int l) { return strncmp(c1,c2,l);}
         static inline int xstricmp(XMLCSTR c1, XMLCSTR c2) { return strcasecmp(c1,c2); }
@@ -419,7 +424,7 @@ XMLNode XMLNode::openFileHelper(XMLCSTR filename, XMLCSTR tag)
         _snprintf(message,2000,
 #else
         snprintf(message,2000,
-#endif		 
+#endif
 #ifdef _XMLWIDECHAR
             "XML Parsing error inside file '%S'.\n%S\nAt line %i, column %i.\n%s%S%s"
 #else
@@ -606,7 +611,7 @@ XMLError XMLNode::writeToFile(XMLCSTR filename, const char *encoding, char nForm
     if (!f) return eXMLErrorCannotOpenWriteFile;
 #ifdef _XMLWIDECHAR
     unsigned char h[2]={ 0xFF, 0xFE };
-    if (!fwrite(h,2,1,f)) 
+    if (!fwrite(h,2,1,f))
     {
     	fclose(f);
     	return eXMLErrorCannotWriteFile;
@@ -625,8 +630,8 @@ XMLError XMLNode::writeToFile(XMLCSTR filename, const char *encoding, char nForm
         if (characterEncoding==char_encoding_UTF8)
         {
             // header so that windows recognize the file as UTF-8:
-            unsigned char h[3]={0xEF,0xBB,0xBF}; 
-            if (!fwrite(h,3,1,f)) 
+            unsigned char h[3]={0xEF,0xBB,0xBF};
+            if (!fwrite(h,3,1,f))
             {
             	fclose(f);
                 return eXMLErrorCannotWriteFile;
@@ -635,7 +640,7 @@ XMLError XMLNode::writeToFile(XMLCSTR filename, const char *encoding, char nForm
         } else if (characterEncoding==char_encoding_ShiftJIS) encoding="SHIFT-JIS";
 
         if (!encoding) encoding="ISO-8859-1";
-        if (fprintf(f,"<?xml version=\"1.0\" encoding=\"%s\"?>\n",encoding)<0) 
+        if (fprintf(f,"<?xml version=\"1.0\" encoding=\"%s\"?>\n",encoding)<0)
         {
         	fclose(f);
             return eXMLErrorCannotWriteFile;
@@ -644,8 +649,8 @@ XMLError XMLNode::writeToFile(XMLCSTR filename, const char *encoding, char nForm
     {
         if (characterEncoding==char_encoding_UTF8)
         {
-            unsigned char h[3]={0xEF,0xBB,0xBF}; 
-            if (!fwrite(h,3,1,f)) 
+            unsigned char h[3]={0xEF,0xBB,0xBF};
+            if (!fwrite(h,3,1,f))
             {
             	fclose(f);
                 return eXMLErrorCannotWriteFile;
@@ -655,13 +660,13 @@ XMLError XMLNode::writeToFile(XMLCSTR filename, const char *encoding, char nForm
 #endif
     int i;
     XMLSTR t=createXMLString(nFormat,&i);
-    if (!fwrite(t,sizeof(XMLCHAR)*i,1,f)) 
+    if (!fwrite(t,sizeof(XMLCHAR)*i,1,f))
     {
        free(t);
        fclose(f);
        return eXMLErrorCannotWriteFile;
     }
-    if (fclose(f)!=0) 
+    if (fclose(f)!=0)
     {
    	    free(t);
         return eXMLErrorCannotWriteFile;
@@ -704,9 +709,9 @@ XMLSTR ToXMLStringTool::toXMLUnSafe(XMLSTR dest,XMLCSTR source)
 #else
         switch(XML_ByteTable[(unsigned char)ch])
         {
-        case 4: 
+        case 4:
             if ((!(source[1]))||(!(source[2]))||(!(source[3]))) { *(dest++)='_'; source++; }
-            else 
+            else
             {
                 *dest=*source;
                 dest[1]=source[1];
@@ -717,7 +722,7 @@ XMLSTR ToXMLStringTool::toXMLUnSafe(XMLSTR dest,XMLCSTR source)
             break;
         case 3:
             if ((!(source[1]))||(!(source[2]))) { *(dest++)='_'; source++; }
-            else 
+            else
             {
                 *dest=*source;
                 dest[1]=source[1];
@@ -725,9 +730,9 @@ XMLSTR ToXMLStringTool::toXMLUnSafe(XMLSTR dest,XMLCSTR source)
                 dest+=3; source+=3;
             }
             break;
-        case 2: 
+        case 2:
             if (!(source[1])) { *(dest++)='_'; source++; }
-            else 
+            else
             {
                 *dest=*source;
                 dest[1]=source[1];
