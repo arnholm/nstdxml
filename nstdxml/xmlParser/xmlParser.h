@@ -90,6 +90,8 @@
 
 #include <stdlib.h>
 
+#include "../nstdxml_config.h"
+
 #if defined(UNICODE) || defined(_UNICODE)
 // If you comment the next "define" line then the library will never "switch to" _UNICODE (wchar_t*) mode (16/32 bits per characters).
 // This is useful when you get error messages like:
@@ -227,7 +229,7 @@ struct XMLNodeContents;
  *    <li> XMLNode::openFileHelper </li>
  *    <li> XMLNode::createXMLTopNode (or XMLNode::createXMLTopNode_WOSD)</li>
  * </ul> */
-typedef struct XMLDLLENTRY XMLNode
+typedef struct NSTDXML_PUBLIC XMLNode
 {
   private:
 
