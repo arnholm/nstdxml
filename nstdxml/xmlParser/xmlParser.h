@@ -1,3 +1,6 @@
+#ifndef HEADER_DFAF884F6BB5E92
+#define HEADER_DFAF884F6BB5E92
+
 /****************************************************************************/
 /*! \mainpage XMLParser library
  * \section intro_sec Introduction
@@ -115,7 +118,7 @@
 #endif
 
 // uncomment the next line if you want no support for wchar_t* (no need for the <wchar.h> or <tchar.h> libraries anymore to compile)
-//#define XML_NO_WIDE_CHAR
+#define XML_NO_WIDE_CHAR
 
 #ifdef XML_NO_WIDE_CHAR
 #undef _XMLWINDOWS
@@ -125,7 +128,7 @@
 #ifdef _XMLWINDOWS
 #include <tchar.h>
 #else
-#define XMLDLLENTRY
+// #define XMLDLLENTRY
 #ifndef XML_NO_WIDE_CHAR
 #include <wchar.h> // to have 'wcsrtombs' for ANSI version
                    // to have 'mbsrtowcs' for WIDECHAR version
@@ -730,3 +733,5 @@ private:
 #undef XMLDLLENTRY
 
 #endif
+#endif // header guard
+
