@@ -7,8 +7,8 @@ using namespace std;
 // $ xxd -i csg_wikipedia.xcsg > csg_wikipedia.h
 #include "test_data/csg_wikipedia.h"
 
-static int num_nodes = 0;
-static int num_attr = 0;
+static size_t num_nodes = 0;
+static size_t num_attr = 0;
 
 void print_node(const nstdxml::xml_node& node, int level);
 

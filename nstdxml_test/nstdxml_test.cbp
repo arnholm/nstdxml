@@ -11,18 +11,28 @@
 				<Option object_output=".cmp/msvc/obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="msvc" />
-				<Option projectCompilerOptionsRelation="-1" />
-				<Option projectLinkerOptionsRelation="-1" />
-				<Option projectIncludeDirsRelation="-1" />
-				<Option projectLibDirsRelation="-1" />
-				<MakeCommands>
-					<Build command="" />
-					<CompileFile command="" />
-					<Clean command="" />
-					<DistClean command="" />
-					<AskRebuildNeeded command="" />
-					<SilentBuild command=" &gt; $(CMD_NULL)" />
-				</MakeCommands>
+				<Compiler>
+					<Add option="/MDd" />
+					<Add option="/EHs" />
+					<Add option="/GR" />
+					<Add option="/GF" />
+					<Add option="/Od" />
+					<Add option="/W3" />
+					<Add option="/RTCsu" />
+					<Add option="/Fd$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).pdb" />
+					<Add option="/EHsc" />
+					<Add option="/D_CRT_SECURE_NO_WARNINGS" />
+					<Add option="/D_CRT_NONSTDC_NO_DEPRECATE" />
+					<Add option="/D_CRT_SECURE_DEPRECATE" />
+					<Add directory="./" />
+				</Compiler>
+				<Linker>
+					<Add option="/NODEFAULTLIB:libcmt.lib" />
+					<Add option="/NODEFAULTLIB:msvcrt.lib" />
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="msvcrtd.lib" />
+					<Add library="nstdxmld" />                   
+				</Linker>
 			</Target>
 			<Target title="MSVC_Release">
 				<Option output=".cmp/msvc/bin/Release/nstdxml_test" prefix_auto="0" extension_auto="1" />
@@ -31,10 +41,10 @@
 				<Option compiler="msvc" />
 				<Compiler>
 					<Add option="/MD" />
-					<Add option="/Ox" />
 					<Add option="/GF" />
-					<Add option="/EHsc" />
+					<Add option="/Ox" />
 					<Add option="/W3" />
+					<Add option="/EHsc" />
 					<Add option="/D_CRT_SECURE_NO_WARNINGS" />
 					<Add option="/D_CRT_NONSTDC_NO_DEPRECATE" />
 					<Add option="/D_CRT_SECURE_DEPRECATE" />
@@ -44,6 +54,7 @@
 					<Add option="/NODEFAULTLIB:msvcrtd.lib" />
 					<Add option="/INCREMENTAL:NO" />
 					<Add library="msvcrt.lib" />
+					<Add library="nstdxml" />
 				</Linker>
 				<ExtraCommands>
 					<Add after="$(CPDE_USR)/bin/cpde_usr -bin -xi -project=$(PROJECT_NAME)  -root=$(PROJECT_DIR)  -build=$(TARGET_NAME)  -target=$(TARGET_OUTPUT_FILE)  -usr=$(CPDE_USR)" />
@@ -95,10 +106,11 @@
 		<Compiler>
 			<Add directory="$(CPDE_USR)/include" />
 		</Compiler>
-        <Linker>
-            <Add directory="$(CPDE_USR)/lib" />
-        </Linker>		
+		<Linker>
+			<Add directory="$(CPDE_USR)/lib" />
+		</Linker>
 		<Unit filename="main.cpp" />
+		<Unit filename="test_data/csg_wikipedia.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
