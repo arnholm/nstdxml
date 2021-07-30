@@ -36,6 +36,22 @@ namespace nstdxml {
       return root;
    }
 
+   xml_node xml_tree::read_xml_string(const std::string& data)
+   {
+      xml_node root;
+      if(xml_tree::read_xml_data(data)) {
+         root = get_root();
+      }
+      return root;
+   }
+
+   bool xml_tree::read_xml_data(const std::string& data)
+   {
+      XMLResults res;
+      m_tree_node = XMLNode::parseString(data.c_str(),0,&res);
+      return (res.error == eXMLErrorNone);
+   }
+
    bool xml_tree::read_xml(const std::string& path)
    {
       XMLResults res;

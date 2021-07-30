@@ -2,5 +2,8 @@
 <CodeBlocks_workspace_file>
 	<Workspace title="NSTDXML">
 		<Project filename="nstdxml/nstdxml.cbp" />
+		<Project filename="nstdxml_test/nstdxml_test.cbp">
+			<Depends filename="nstdxml/nstdxml.cbp" />
+		</Project>
 	</Workspace>
 </CodeBlocks_workspace_file>

@@ -34,6 +34,10 @@ namespace nstdxml {
       // use is_valid() to check result
       xml_node read_xml_file(const std::string& path);
 
+      // read xml data from string and return root node
+      // use is_valid() to check result
+      xml_node read_xml_string(const std::string& data);
+
       // return the root node of the tree,
       // use is_valid() to check result
       xml_node get_root();
@@ -49,6 +53,9 @@ namespace nstdxml {
 
       // read xml data from file
       bool read_xml(const std::string& path);
+
+      // read xml data from string
+      bool read_xml_data(const std::string& data);
 
    private:
       xml_node m_tree_node;  // points to <xml> tag

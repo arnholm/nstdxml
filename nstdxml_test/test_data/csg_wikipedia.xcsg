@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xcsg version="1.0">
+	<metadata>
+		<software name="angelcad" version="v1.4-00"/>
+		<model name="csg_wikipedia" created="2020-10-11T15:50:48"/>
+	</metadata>
+	<difference3d>
+		<intersection3d>
+			<cube size="45" center="true"/>
+			<sphere r="30"/>
+		</intersection3d>
+		<union3d>
+			<union3d>
+				<cylinder h="60" r="17" center="true"/>
+				<cylinder h="60" r="17" center="true">
+					<tmatrix>
+						<trow c0="1" c1="0" c2="0" c3="0"/>
+						<trow c0="0" c1="6.123233995736766e-17" c2="-1" c3="0"/>
+						<trow c0="0" c1="1" c2="6.123233995736766e-17" c3="0"/>
+						<trow c0="0" c1="0" c2="0" c3="1"/>
+					</tmatrix>
+				</cylinder>
+			</union3d>
+			<cylinder h="60" r="17" center="true">
+				<tmatrix>
+					<trow c0="6.123233995736766e-17" c1="0" c2="1" c3="0"/>
+					<trow c0="0" c1="1" c2="0" c3="0"/>
+					<trow c0="-1" c1="0" c2="6.123233995736766e-17" c3="0"/>
+					<trow c0="0" c1="0" c2="0" c3="1"/>
+				</tmatrix>
+			</cylinder>
+		</union3d>
+	</difference3d>
+</xcsg>
