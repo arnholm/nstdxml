@@ -25,12 +25,12 @@ void main()
 
 For more details, see the **nstdxml_test** console application.
 
-##installation
+## installation
 
 You generate build files using [Premake5](https://premake.github.io/). Install Premake5 and generate build files
 
 
-###Building for Linux:
+### Building for Linux:
 
 ```
       $ premake5 --file=NSTDXML_premake5.lua gmake2
@@ -67,14 +67,13 @@ The library can then be built:
         Running postbuild commands
         mkdir -p ../release
         cp -f bin/release/* ../release
-
 ```
 The final step is to run the test application
+
 
 ```
       $ cd release/
       $ ./nstdxml_test 
-
 ```
 
 The following output is produced
@@ -105,10 +104,9 @@ xcsg version=1.0
 
 ----
 The xml data has 23 nodes and 49 attributes
-
 ```
 
-###Building for Windows & Visual Studio 2019
+### Building for Windows & Visual Studio 2019
 
 Download [Premake5](https://premake.github.io/) for Windows amd generate build files:
 
