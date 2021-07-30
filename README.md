@@ -1,9 +1,10 @@
 # nstdxml
 non-standard xml C++ library
 
-non-standard xml C++ library is independent of external dependencies, it is designed to be nice and simple. If you need something really advanced, this is not for you.
+The **nstdxml** library has no external dependencies, it is designed to be nice and simple. If you need something really advanced this may not be for you, but if you need to read/write moderately sized XML files easily this may be for you. This library uses [XMLParser library](https://applied-mathematics.net/tools/xmlParser.html) by Frank Vanden Berghen for its back-end implementation, but provides a simplified inderface using the classes **xml_tree** and **xml_node**.
 
-##Quick introduction
+
+## Quick introduction
 
 A basic example:
 
