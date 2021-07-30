@@ -28,7 +28,7 @@ For more details, see the **nstdxml_test** console application.
 
 ## installation
 
-You generate build files using [Premake5](https://premake.github.io/). Install Premake5 and generate build files
+Install [Premake5](https://premake.github.io/) and generate build files:
 
 
 ### Building for Linux:
@@ -109,7 +109,7 @@ The xml data has 23 nodes and 49 attributes
 
 ### Building for Windows & Visual Studio 2019
 
-Download [Premake5](https://premake.github.io/) for Windows amd generate build files:
+Download [Premake5](https://premake.github.io/) for Windows and generate build files:
 
 ```
       C:\somedir> premake5 --file=NSTDXML_premake5.lua vs2019
