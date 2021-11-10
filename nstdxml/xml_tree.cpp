@@ -72,11 +72,11 @@ namespace nstdxml {
       std::string xml(str);
       freeXMLString(str);
 
-      // There seems to be some garbage after the root end tag, so eliminate that
+      // There seems to be some garbage after the end tag, so erase that
       std::string end_tag = "</" + m_root.tag() + '>';
-      size_t ipos = xml.find_last_of(end_tag);
+      size_t ipos = xml.rfind(end_tag);
       if(ipos != std::string::npos) {
-         xml = xml.substr(0,ipos+1);
+         xml.erase(ipos+end_tag.length(), std::string::npos );
       }
 
       out << xml << std::endl;
