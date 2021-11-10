@@ -65,6 +65,25 @@ namespace nstdxml {
       return (err == eXMLErrorNone);
    }
 
+   bool xml_tree::write_xml(std::ostream& out) const
+   {
+      // write the whole tree
+      XMLSTR str = m_tree_node.m_xnode.createXMLString();
+      std::string xml(str);
+      freeXMLString(str);
+
+      // There seems to be some garbage after the root end tag, so eliminate that
+      std::string end_tag = "</" + m_root.tag() + '>';
+      size_t ipos = xml.find_last_of(end_tag);
+      if(ipos != std::string::npos) {
+         xml = xml.substr(0,ipos+1);
+      }
+
+      out << xml << std::endl;
+
+      return true;
+   }
+
    xml_node xml_tree::get_root()
    {
       if(m_root.is_valid()) return m_root;

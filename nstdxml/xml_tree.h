@@ -21,6 +21,7 @@
 #include "nstdxml_config.h"
 
 #include <string>
+#include <ostream>
 #include "xml_node.h"
 
 namespace nstdxml {
@@ -49,6 +50,9 @@ namespace nstdxml {
       // write xml data to file
       bool write_xml_file(const std::string& path) const;
 
+      // write xml data to output stream
+      bool write_xml(std::ostream& out) const;
+
    protected:
 
       // read xml data from file
@@ -65,3 +69,4 @@ namespace nstdxml {
 } // namespace nstdxml
 
 #endif // XML_TREE_H
+

@@ -6,6 +6,7 @@ using namespace std;
 // header file 'csg_wikipedia.h' has been created on linux as follows
 // $ xxd -i csg_wikipedia.xcsg > csg_wikipedia.h
 #include "test_data/csg_wikipedia.h"
+#include <sstream>
 
 static size_t num_nodes = 0;
 static size_t num_attr = 0;
@@ -25,6 +26,16 @@ int main(int argc, char **argv)
 
    cout << endl << "----" << endl;
    cout << "The xml data has " << num_nodes << " nodes and " <<  num_attr << " attributes" << endl;
+
+   cout << endl << "---- writing to output stream" << endl;
+
+   std::ostringstream out;
+   tree.write_xml(out);
+
+   cout << out.str();
+   cout << "----" << endl;
+
+
 
    return 0;
 }
